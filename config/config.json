@@ -1,0 +1,11 @@
+{
+  "delay": 0.35,
+  "threads": 25,
+  "use_proxies": false,
+  "timeout": 20,
+  "user_agent": "random",
+  "log_level": "INFO",
+  "auto_save_answers": true,
+  "answers_file": "data/answers.json",
+  "proxies_file": "data/proxies.txt"
+}
