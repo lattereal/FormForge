@@ -1,6 +1,6 @@
 # FormForge v2.3
 
-**Advanced Google Form Automation Engine — actually maintained, actually working.**
+**Advanced Google Form Automation Engine actually maintained, actually working.**
 
 > This is open source. Don't resell it, don't claim it's yours.
 
@@ -10,19 +10,19 @@
 
 Most Google Form spammers you'll find are broken, outdated, or straight-up don't work anymore. FormForge is built differently:
 
-- **Parses forms directly from `FB_PUBLIC_LOAD_DATA_`** — Google's internal form data blob, not fragile CSS selectors. This means it keeps working even when Google tweaks the UI.
-- **Full multi-page form support** — Automatically detects how many pages a form has and builds the correct `pageHistory` token so multi-page submissions actually go through instead of silently failing.
-- **Real multithreading** — Uses Python threads to fire off submissions in parallel. Set 25 threads and it sends 25 requests at once.
-- **Not a script, it's a full tool** — 26 options, proxy support, session logging, batch queue, answer saving/loading, system info, and more.
+- **Parses forms directly from `FB_PUBLIC_LOAD_DATA_`**  Google's internal form data blob, not fragile CSS selectors. This means it keeps working even when Google tweaks the UI.
+- **Full multi-page form support**  Automatically detects how many pages a form has and builds the correct `pageHistory` token so multi-page submissions actually go through instead of silently failing.
+- **Real multithreading**  Uses Python threads to fire off submissions in parallel. Set 25 threads and it sends 25 requests at once.
+- **Not a script, it's a full tool**  26 options, proxy support, session logging, batch queue, answer saving/loading, system info, and more.
 
 ---
 
 ## What it can't do
 
-- **Sign-in required forms** — If the form redirects you to `accounts.google.com`, FormForge will detect this and tell you clearly. There is no way around this without a real Google account login, and that's out of scope. These forms cannot be parsed or submitted.
-- **File upload questions** — Not supported.
-- **Image/video questions** — Not supported.
-- **Forms with reCAPTCHA** — You get 20 seconds during parsing to solve it manually. Submission CAPTCHAs are not bypassable.
+- **Sign-in required forms**  If the form redirects you to `accounts.google.com`, FormForge will detect this and tell you clearly. There is no way around this without a real Google account login, and that's out of scope. These forms cannot be parsed or submitted.
+- **File upload questions**  Not supported.
+- **Image/video questions**  Not supported.
+- **Forms with reCAPTCHA**  You get 20 seconds during parsing to solve it manually. Submission CAPTCHAs are not bypassable.
 
 ---
 
@@ -42,7 +42,7 @@ Or install requirements directly:
 pip install requests beautifulsoup4 selenium webdriver-manager lxml
 ```
 
-**You also need Google Chrome installed.** webdriver-manager handles the ChromeDriver automatically — you don't need to download it separately.
+**You also need Google Chrome installed.** webdriver-manager handles the ChromeDriver automatically  you don't need to download it separately.
 
 ---
 
@@ -62,13 +62,13 @@ Windows users can double-click `scripts\run.bat`.
 
 ### Basic flow
 
-1. **Option 1 — Start New Form**  
+1. **Option 1  Start New Form**  
    Paste a Google Form URL. Selenium opens Chrome in the background, waits up to 20 seconds (press Enter to skip early), then parses all questions automatically.
 
-2. **Option 6 — Enter Answers**  
+2. **Option 6  Enter Answers**  
    Type your answer for each question. Checkbox questions accept comma-separated values.
 
-3. **Option 2 — Quick Spam**  
+3. **Option 2  Quick Spam**  
    Enter how many submissions to send. Threads fire in parallel.
 
 ### Supported question types
@@ -126,7 +126,7 @@ This is one of the more useful features. You enter multiple form URLs, FormForge
 
 ## Multi-page forms
 
-FormForge handles multi-page forms automatically. When parsing, it counts page break blocks in the form data and stores the page count internally. When submitting, it builds the correct `pageHistory` field (e.g. `0,1,2` for a 3-page form) that Google expects in the POST body. Without this, submissions to multi-page forms return 200 but never actually register — most other tools get this wrong.
+FormForge handles multi-page forms automatically. When parsing, it counts page break blocks in the form data and stores the page count internally. When submitting, it builds the correct `pageHistory` field (e.g. `0,1,2` for a 3-page form) that Google expects in the POST body. Without this, submissions to multi-page forms return 200 but never actually register  most other tools get this wrong.
 
 ---
 
@@ -140,7 +140,7 @@ http://user:password@host:port
 socks5://host:port
 ```
 
-Enable proxy mode from Option 11 — Proxy Manager. FormForge rotates through the list in order across threads.
+Enable proxy mode from Option 11  Proxy Manager. FormForge rotates through the list in order across threads.
 
 ---
 
@@ -158,10 +158,10 @@ Enable proxy mode from Option 11 — Proxy Manager. FormForge rotates through th
 }
 ```
 
-- **threads** — How many parallel threads to use per spam run
-- **delay** — Seconds to wait between each request per thread
-- **timeout** — HTTP request timeout in seconds
-- **user_agent** — `random` rotates through a list of common browser UA strings; `fixed` always uses the first one
+- **threads**  How many parallel threads to use per spam run
+- **delay**  Seconds to wait between each request per thread
+- **timeout**  HTTP request timeout in seconds
+- **user_agent**  `random` rotates through a list of common browser UA strings; `fixed` always uses the first one
 
 ---
 
@@ -169,7 +169,7 @@ Enable proxy mode from Option 11 — Proxy Manager. FormForge rotates through th
 
 ```
 FormForge-v2.3/
-├── main.py                  # Entry point — run this
+├── main.py                  # Entry point  run this
 ├── requirements.txt
 │
 ├── utils/
@@ -196,25 +196,25 @@ FormForge-v2.3/
 ## FAQ
 
 **Do I need a Google account?**  
-No, for public forms. Forms that redirect to a Google sign-in page cannot be used — FormForge will detect this and tell you.
+No, for public forms. Forms that redirect to a Google sign-in page cannot be used  FormForge will detect this and tell you.
 
 **Does this work on Windows?**  
 Yes, Windows is the main target. Use `scripts\run.bat` if you want a launcher.
 
 **Why does Chrome open first?**  
-Selenium loads the form page so the parser can read the full question data from the page source. It only opens briefly during parsing — submissions use plain HTTP requests, no browser needed.
+Selenium loads the form page so the parser can read the full question data from the page source. It only opens briefly during parsing  submissions use plain HTTP requests, no browser needed.
 
-**Press Enter to skip the wait — what does that do?**  
+**Press Enter to skip the wait  what does that do?**  
 FormForge waits 20 seconds by default so you can solve any CAPTCHA that appears. If the page loaded fine, just press Enter to skip the countdown and continue immediately.
 
-**The form has multiple pages — will it work?**  
+**The form has multiple pages  will it work?**  
 Yes. FormForge detects the number of pages and sends the correct `pageHistory` value automatically.
 
 **Where are saved answers stored?**  
 `data/answers.json`
 
 **Where are logs stored?**  
-`logs/` — one file per session.
+`logs/`  one file per session.
 
 ---
 
@@ -227,7 +227,7 @@ Run `pip install -r requirements.txt` again.
 Make sure Google Chrome is installed and up to date. webdriver-manager downloads the matching ChromeDriver automatically.
 
 **Parser returned nothing**  
-The form URL might be wrong, or the form requires sign-in. Try Option 4 — Form Inspector and check whether Chrome loads the form or redirects to a login page.
+The form URL might be wrong, or the form requires sign-in. Try Option 4  Form Inspector and check whether Chrome loads the form or redirects to a login page.
 
 **HTTP 400 during submission**  
 Usually means the form was updated or the token expired. Re-parse the form and re-enter your answers.
@@ -236,7 +236,7 @@ Usually means the form was updated or the token expired. Re-parse the form and r
 If the form has multiple pages and you're using a different tool, it's probably missing the `pageHistory` field. FormForge handles this correctly.
 
 **Proxy setup failed**  
-Check your proxy format in `data/proxies.txt` and use Option 13 — Test Proxies before enabling proxy mode.
+Check your proxy format in `data/proxies.txt` and use Option 13  Test Proxies before enabling proxy mode.
 
 ---
 
@@ -250,4 +250,4 @@ This is fully open source. The code is all here, nothing is hidden, no telemetry
 
 ## License
 
-MIT — see [LICENSE](LICENSE)
+MIT  see [LICENSE](LICENSE)
