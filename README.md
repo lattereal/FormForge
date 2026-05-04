@@ -32,7 +32,7 @@ Clone the repo and install dependencies:
 
 ```bash
 git clone https://github.com/lattereal/FormForge
-cd FormForge/FormForge-v2.3
+cd FormForge/FormForge
 pip install -r requirements.txt
 ```
 
